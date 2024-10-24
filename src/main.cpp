@@ -17,7 +17,7 @@ class $modify (myPlayLayer, PlayLayer) {
 	// holds the writer
 	struct Fields {
 		std::unique_ptr<SimpleSerial> writer;
-		int cutOff = 50; // this can be changed to a setting when tested
+		int cutOff = Mod::get()->getSettingValue<int64_t>("percentMode");
 
 		// Function to initialize the serial object
 		void initSerial(const std::string &com_port, DWORD COM_BAUD_RATE) {
@@ -70,8 +70,8 @@ class $modify (myPlayLayer, PlayLayer) {
 		// reads user settings
 		std::string x = Mod::get()->getSettingValue<std::string>("COM port");
 
-		DWORD COM_BAUD_RATE = CBR_9600; // TODO: implement this as a setting
-
+		DWORD COM_BAUD_RATE = static_cast<uint32_t>(Mod::get()->getSettingValue<int64_t>("baud-rate"));
+		log::debug("baud rate is {}", Mod::get()->getSettingValue<int64_t>("baud-rate"));
 		// initiates it
 		m_fields->initSerial(x, COM_BAUD_RATE);
 

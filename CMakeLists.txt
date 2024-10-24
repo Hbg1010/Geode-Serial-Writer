@@ -5,7 +5,7 @@ set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64")
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /FORCE:MULTIPLE") 
 
-project(serialWrite VERSION 1.0.0)
+project(serialWrite VERSION 0.1.0)
 
 # include_directories(${PROJECT_SOURCE_DIR}/libserial)
 

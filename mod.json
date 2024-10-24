@@ -20,10 +20,21 @@
 			"name": "percent",
 			"min": 0,
 			"max": 100,
+			"default": 0,
 			"controls": {
 				"arrows": true,
 				"arrow-step": 1,
 				"big-arrows": false,
+				"input": true
+			}
+		},
+		"baud-rate": {
+			"type": "int",
+			"name": "baud-rate",
+			"min": 0,
+			"default": 9600,
+			"controls": {
+				"input": true
 			}
 		}
 	}
