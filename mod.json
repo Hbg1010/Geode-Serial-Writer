@@ -1,14 +1,11 @@
 {
 	"geode": "3.8.1",
 	"gd": {
-		"win": "2.206",
-		"android": "2.206",
-		"mac": "2.206",
-		"ios": "2.206"
+		"win": "2.206"
 	},
 	"id": "hbg1010.serialwrite",
 	"name": "serialWrite",
-	"version": "v1.0.0",
+	"version": "v0.1.0",
 	"developer": "Hbg1010",
 	"description": "Writes to a serial port to activate a microcontroller",
 	"settings": {

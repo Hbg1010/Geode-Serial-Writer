@@ -1,6 +1,8 @@
 # serialWrite
 <img src="logo.png" width="150" alt="the mod's logo" />
 
+This mod should only work on windows machines.
+
 This simple mod allows the user to communicate with an arduino over a shared Serial port when the player dies (for now)
 
 
