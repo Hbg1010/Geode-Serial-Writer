@@ -17,6 +17,7 @@ class $modify (myPlayLayer, PlayLayer) {
 	// holds the writer
 	struct Fields {
 		std::unique_ptr<SimpleSerial> writer;
+		int cutOff = 50; // this can be changed to a setting when tested
 
 		// Function to initialize the serial object
 		void initSerial(const std::string &com_port, DWORD COM_BAUD_RATE) {
@@ -82,12 +83,15 @@ class $modify (myPlayLayer, PlayLayer) {
 
 		PlayLayer::resetLevel();
 
-		try {
-			m_fields->write(true); 
-		}
-		catch(const std::exception& e)
-		{
-			log::debug("There is no smegma, oops");
+		// checks to see if the player has passed the cutoff
+		if (PlayLayer::getCurrentPercentInt() >= m_fields->cutOff) {
+			try {
+				m_fields->write(true); 
+			}
+			catch(const std::exception& e)
+			{
+				log::debug("Writer was not able to write");
+			}
 		}
 	}
 };
