@@ -3,7 +3,9 @@ Body of serial port node
 */
 
 #pragma once
-#include <Geode/Geode.hpp>
+// #include <Geode/Geode.hpp>
+#include <Geode/cocos/base_nodes/CCNode.h>
+#include <Geode/loader/Mod.hpp>
 #include "../simple-serial-port/SimpleSerial.cpp"
 #include <memory> 
 #include <string>
@@ -11,17 +13,19 @@ Body of serial port node
 using namespace geode::prelude;
 
 class SerialNode : public CCNode {
-    private:
-        std::unique_ptr<SimpleSerial> writer;
+private:
+    std::unique_ptr<SimpleSerial> writer;
 
-    public:
-        bool init();
-        bool initSerial(const std::string &com_port, DWORD COM_BAUD_RATE);
-        void writeBool(bool input);
-        void writeInt(int input);
-        bool isActive();
-        bool deactivate();
-        ~SerialNode();
+public:
+    static SerialNode* create(); 
+    bool init();
+    bool initSerial(const std::string &com_port, DWORD COM_BAUD_RATE);
+    bool isActive();
+    bool deactivate();
+    void writeBool(bool input);
+    void writeInt(int input);
+    // add more writer functions here
+    ~SerialNode();
 
-        static SerialNode* create(); 
+        
 };
