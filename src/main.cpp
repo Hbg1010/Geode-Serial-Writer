@@ -13,42 +13,44 @@ using namespace geode::prelude;
 
 #include <Geode/modify/PlayLayer.hpp>
 // using this to check player deaths
-class $modify (myPlayLayer, PlayLayer) {
+// class $modify (myPlayLayer, PlayLayer) {
 
-	struct Fields {
-		SerialNode* writer = nullptr;
-	};
+// 	struct Fields {
+// 		SerialNode* writer = nullptr;
+// 	};
 
-	// inits the scene
-	bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) {
-		log::debug("init");
-	/**
-	 * We call the original init function so that the
-	 * original class is properly initialized.
-	 */
-	if (!PlayLayer::init(level,useReplay, dontCreateObjects)) {
-		return false;
-	}
+// 	// inits the scene
+// 	bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) {
+// 		log::debug("init");
+// 	/**
+// 	 * We call the original init function so that the
+// 	 * original class is properly initialized.
+// 	 */
+// 	if (!PlayLayer::init(level,useReplay, dontCreateObjects)) {
+// 		return false;
+// 	}
 
-	m_fields->writer = SerialNode::create();
-	CCNode* sNode = m_fields->writer;
-	sNode->setID("Serial Writer");
+// 	// defines the writer.
+// 	m_fields->writer = SerialNode::create();
+// 	CCNode* sNode = m_fields->writer;
+// 	sNode->setID("Serial Writer");
+// 	log::debug("created in main. node: {}", sNode);
 
-	this->addChild(sNode);
+// 	this->addChild(sNode);
 
-		return true;
+// 		return true;
 
-	}
+// 	}
 
-	void resetLevel() {
-		log::debug("resetLevel");
-		PlayLayer::resetLevel();
+// 	void resetLevel() {
+// 		log::debug("resetLevel");
+// 		PlayLayer::resetLevel();
 
-		if (m_fields->writer == nullptr) return;
-
-		m_fields->writer->writeBool(true);
-	}
-};
+// 		if (m_fields->writer != nullptr) {
+// 			m_fields->writer->writeBool(true);
+// 		}
+// 	}
+// };
 
 // old stuff 
 // // holds the writer
@@ -95,44 +97,72 @@ class $modify (myPlayLayer, PlayLayer) {
 
 
 
+/*
+THIS DID NOT WORK. HAVING MULTIPLE NODES WILL CAUSE ISSUES WITH FUTURE WRITING. FIX THIS!
 
+*/
 
 	
-// #include <Geode/modify/PlayerObject.hpp>
+#include <Geode/modify/PlayerObject.hpp>
 
-// class $modify (layer, PlayerObject) {
-// 	struct Fields {
-// 	SerialNode* writer = nullptr;
-// 	};
+class $modify (layer, PlayerObject) {
+	struct Fields {
+	SerialNode* writer = nullptr;
+	};
 
-// 	bool init(int p0, int p1, GJBaseGameLayer* p2, cocos2d::CCLayer* p3, bool p4) {
-// 		if (!PlayerObject::init(p0, p1, p2, p3, p4)) return false;
+	bool init(int p0, int p1, GJBaseGameLayer* p2, cocos2d::CCLayer* p3, bool p4) {
+		if (!PlayerObject::init(p0, p1, p2, p3, p4)) return false;
 
 
+		m_fields->writer = SerialNode::create();
+		CCNode* sNode = m_fields->writer;
+		log::debug("created a node! {}", sNode);
+		sNode->setID("Serial Writer");
+
+		try
+		{
+			this->addChild(sNode, 3, 3);
+
+		}
+		catch(const std::exception& e)
+		{
+			log::debug("Kill yourself");
+		}
+		
+
+		return true;
+	}
+
+	bool pushButton(PlayerButton p0) {
+		if (m_fields->writer != nullptr) m_fields->writer->writeBool(true);
+
+		
+		return PlayerObject::pushButton(p0);
+	}
+
+
+};
+
+// #include <Geode/modify/MenuLayer.hpp>
+// class $modify(myMenuLayer, MenuLayer) {
+
+// 		struct Fields {
+// 			SerialNode* writer = nullptr;
+// 			};
+
+// 	bool init() {
+// 		if (!MenuLayer::init()) return false;
 // 		m_fields->writer = SerialNode::create();
 // 		CCNode* sNode = m_fields->writer;
+// 		log::debug("created a node! {}", sNode);
 // 		sNode->setID("Serial Writer");
-
-// 		try
-// 		{
-// 			this->addChild(sNode, 3, 3);
-
-// 		}
-// 		catch(const std::exception& e)
-// 		{
-// 			log::debug("Kill yourself");
-// 		}
-		
 
 // 		return true;
 // 	}
 
-// 	bool pushButton(PlayerButton p0) {
-// 		if (m_fields->writer != nullptr) m_fields->writer->writeBool(true);
+// 	void onMyProfile(CCObject* sender) {
+// 		MenuLayer::onMyProfile(sender); 
 
-		
-// 		return PlayerObject::pushButton(p0);
+// 		m_fields->writer->writeBool(true);
 // 	}
-
-
 // };
