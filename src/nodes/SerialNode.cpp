@@ -62,8 +62,8 @@ bool SerialNode::initSerial(const std::string &com_port, DWORD COM_BAUD_RATE) {
 void SerialNode::writeBool(bool input) {
     // this solves a problem as reset is run prior to innit????????????????
     if (staticWriter == nullptr) return;
-
-    else if (staticWriter->IsConnected()) {
+    
+    if (staticWriter->IsConnected()) {
     // defines the input as a string
     std::string val = input ? "1" : "0";
     char *to_send = &val[0];

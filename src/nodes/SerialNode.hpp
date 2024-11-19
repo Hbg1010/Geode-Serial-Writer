@@ -24,6 +24,7 @@ public:
     bool deactivate();
     void writeBool(bool input);
     void writeInt(int input);
+    void writeString(std::string input);
     // add more writer functions here
     ~SerialNode();
 
