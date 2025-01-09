@@ -1,13 +1,13 @@
 {
-	"geode": "4.0.0",
+	"geode": "4.1.2",
 	"gd": {
-		"win": "2.206"
+		"win": "2.2074"
 	},
 	"id": "hbg1010.serialwrite",
 	"name": "serialWrite",
 	"version": "v0.1.0",
 	"developer": "Hbg1010",
-	"description": "Writes to a serial port to activate a microcontroller",
+	"description": "Serial writing in gd",
 	"settings": {
 		"COM port": {
 			"type": "string",

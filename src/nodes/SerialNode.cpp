@@ -46,7 +46,7 @@ bool SerialNode::initSerial(const std::string &com_port, DWORD COM_BAUD_RATE) {
     try
     {
         staticWriter = new SimpleSerial(com_port, COM_BAUD_RATE);
-        log::debug("I made a new writer!");
+        // log::debug("I made a new writer!");
     }
     catch(const std::exception& e)
     {

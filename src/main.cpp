@@ -1,5 +1,5 @@
 /**
- * Include the Geode headers.
+ * This file is just for examples.
  */
 
 // #include "simple-serial-port/SimpleSerial.cpp"
@@ -102,7 +102,6 @@ THIS DID NOT WORK. HAVING MULTIPLE NODES WILL CAUSE ISSUES WITH FUTURE WRITING. 
 
 */
 
-	
 #include <Geode/modify/PlayerObject.hpp>
 
 class $modify (layer, PlayerObject) {
