@@ -11,11 +11,12 @@ https://github.com/dmicha16/simple_serial_port for the serial port writer (that 
 
 Planning for V2 of the lib:
 - Complete rewrite as an API
-- Mac Support (Android will prob never happen)
+- Mac Support via switching to an already established library
+- Bluetooth Serial Support?
 - Encoding decoding
 - Create a manager for Serial writers; allow multiple serial writers to exist as refrences / derefs
   - Create a data structure to hold different serial ports
-  - get static values back, allowing you to have multiple objects that can have 1 writer, but write at different speeds
+  - Create each object as an async listener, which will send data back on event / allow stuff to be sent through it
   - Have a control system to set things as exclusive and stuff
   - Have some conflict system
 - Create a system based off of event listening / writing to geode nodes and stuff
